@@ -3,47 +3,7 @@ clear;
 close all;
 clc;
 
-% [X MAP] = imread('shadow.tif');
-% RGB = ind2rgb(X,MAP);
-% 
-% % RGB = imread('win.png');
-% 
-% cform2lab = makecform('srgb2lab');
-% LAB = applycform(RGB, cform2lab);
-% ll = LAB(:,:,1);
-% L = LAB(:,:,1)/100;
-% LAB(:,:,1) = adapthisteq(L,'NumTiles',...
-%                          [8 8],'ClipLimit',0.005)*100;
-% 
-% cform2srgb = makecform('lab2srgb');
-% J = applycform(LAB, cform2srgb);
-% 
-% figure, imshow(RGB);
-% figure, imshow(J);
-% 
-% 
-% level = 100;
-% x = 1:level;
-% [h w] = size(ll);
-% his = zeros(level);
-% cdf = zeros(level);
-% 
-% indmax = h*w;
-% il = uint8(ll(:));
-% for i=1:indmax
-%    his( il(i)) = his( il(i))+1;
-% end
-% for i=1:level
-%    cdf(i) = sum(his(1:i)); 
-% end
-% 
-% figure,bar(x,his);
-% figure,bar(x,cdf);
-
-
-
-%%
-%Ö±·½Í¼¾ùºâ»¯
+%ç›´æ–¹å›¾å‡è¡¡åŒ–
 
 alpha = 0.010;
 
@@ -53,7 +13,8 @@ original = original(:,:,1);
 figure,imshow(original);
 title('original');
 [h w] = size(original);
-%Ö±·½Í¼Í³¼Æ
+
+%ç›´æ–¹å›¾ç»Ÿè®¡
 p = zeros(1,256);
 for i = 1:256
    p(i) = sum(sum(original(:) == (i-1)));
@@ -84,10 +45,11 @@ figure,bar(hh);
 p = double(p);
 p = p./(h*w);
 figure;
-bar(p);hold on;%ÕâÀïÖ±½Óbar(p)»áµ¼ÖÂºá×ø±êÓë»Ò¶ÈÖµ²î1
+bar(p);hold on;%è¿™é‡Œç›´æ¥bar(p)ä¼šå¯¼è‡´æ¨ªåæ ‡ä¸ç°åº¦å€¼å·®1
 % axis([0 255 0 0.12]);
 title('histogram');
-% Ö±·½Í¼¾ùºâ»¯,ÏàÁ¬Ìİ¶ÈµÄÆµÊıÏà²îÔ½´ó£¬Íê³ÉÖ±·½Í¼Ó³Éäºó£¬Á½ÕßµÄÌİ¶È¾àÀëÔ½´ó
+
+% ç›´æ–¹å›¾å‡è¡¡åŒ–
 s = zeros(1,256);
 for i = 1:256
      s(i) = sum(hh(1:i)/(w*h))*255;
